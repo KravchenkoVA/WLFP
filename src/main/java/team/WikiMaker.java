@@ -1,11 +1,13 @@
+package team;
+
 import java.util.Locale;
 
 public class WikiMaker {
 
     public String makeWikiTeam(int i, TeamDTO teamDTO) {
-        int position = i+1;
+        int position = i + 1;
         String delimiter = "|";
-        if (position <= 3 ) {
+        if (position <= 3) {
             delimiter = "!";
         }
         String keyValue =
@@ -16,17 +18,16 @@ public class WikiMaker {
                         delimiter + " <center>" + teamDTO.getWin() + " </center>" + "\n" +
                         delimiter + " <center>" + teamDTO.getDraw() + " </center>" + "\n" +
                         delimiter + " <center>" + teamDTO.getLose() + " </center>" + "\n" +
-                        delimiter + " <center>" + teamDTO.getGoalsScored()+"-"+teamDTO.getGoalsConceded() + " </center>" + "\n" +
+                        delimiter + " <center>" + teamDTO.getGoalsScored() + "-" + teamDTO.getGoalsConceded() + " </center>" + "\n" +
                         delimiter + " <center>" + teamDTO.getPoints() + " </center>" + "\n";
         String zone = "|" + "\n";
 
-            if (position<=2) {
-                zone ="! <center>[[photo19012332_456242075|16x16px;nolink|Зона повышения - BL]]</center>" + "\n";
-            }
-            else if (position ==3){
-                zone ="| <center>[[photo19012332_457247569|16x16px;nolink|Зона повышения стыки- BL]]</center>" + "\n";
-            }
-        return keyValue + zone + "|" + formMaker(teamDTO)+ "\n";
+        if (position <= 2) {
+            zone = "! <center>[[photo19012332_456242075|16x16px;nolink|Зона повышения - BL]]</center>" + "\n";
+        } else if (position == 3) {
+            zone = "| <center>[[photo19012332_457247569|16x16px;nolink|Зона повышения стыки- BL]]</center>" + "\n";
+        }
+        return keyValue + zone + "|" + formMaker(teamDTO) + "\n";
     }
 
     public String formMaker(TeamDTO teamDTO) {
@@ -35,15 +36,18 @@ public class WikiMaker {
         for (int i = 0; i < resultFromFile.length(); i++) {
             switch (String.valueOf(resultFromFile.charAt(i)).toLowerCase(Locale.ROOT)) {
                 case "в":
-                    forms = forms + "[[photo-45326351_343464835|16x16px| ]]";break;
+                    forms = forms + "[[photo-45326351_343464835|16x16px| ]]";
+                    break;
                 case "н":
-                    forms = forms +"[[photo-45326351_343464836|16x16px| ]]";break;
+                    forms = forms + "[[photo-45326351_343464836|16x16px| ]]";
+                    break;
                 case "п":
-                    forms = forms + "[[photo-45326351_343464838|16x16px| ]]";break;
+                    forms = forms + "[[photo-45326351_343464838|16x16px| ]]";
+                    break;
                 default:
                     forms = forms + "";
+            }
         }
-    }
         return forms;
     }
 
@@ -91,7 +95,7 @@ public class WikiMaker {
             "! <center>П </center>\n" +
             "! <center> РМ </center>\n" +
             "! <center>O</center>\n" +
-            "! "+ "\n";
+            "! " + "\n";
     String after = "|} \n" +
             "<br/><br/>\n" +
             "==Справка==\n" +
