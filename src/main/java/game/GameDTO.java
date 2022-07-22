@@ -1,4 +1,4 @@
-package team;
+package game;
 
 import lombok.Data;
 import player.PlayerDTO;

@@ -8,5 +8,4 @@ public class PlayerDTO {
 
     private String name;
     private List<BetDTO> bets;
-    private Integer points;
 }

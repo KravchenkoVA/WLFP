@@ -24,7 +24,6 @@ public class TeamDTO {
 
     //TODO: Убрать костыль на парсинг имени, подумать, как сделать это красиво
     public TeamDTO(List<String> strings) {
-        List<String> arg = strings.stream().peek(e -> e.split(" ")).collect(Collectors.toList());
         int nameCountWord = strings.size() - 7;
         String s = new String();
         for (int i = 0; i < nameCountWord; i++) {

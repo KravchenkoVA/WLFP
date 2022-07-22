@@ -7,5 +7,5 @@ public class BetDTO {
 
    private Integer gameNumber;
    private String score;
-
+   private Integer points;
 }

@@ -1,4 +1,6 @@
-import team.GameDTO;
+import game.ResultCounter;
+import player.BetDTO;
+import game.GameDTO;
 import team.GostReader;
 import team.TeamDTO;
 import team.TeamReader;
@@ -10,13 +12,20 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         TeamReader teamReader = new TeamReader();
-        String filePath = "src/main/java/files/teams.txt";
-        List<TeamDTO> teams = teamReader.createTeamList(teamReader.getTeamFromFile(filePath));
+        String teamFile = "src/main/java/files/teams.txt";
+        String gostFile = "src/main/java/files/gost";
+        String resultFile = "src/main/java/files/result";
+
+        List<TeamDTO> teams = teamReader.createTeamList(teamReader.getTeamFromFile(teamFile));
         teamReader.createWiki(teams);
 
-        String filePath2 = "src/main/java/files/gost";
+
         GostReader gostReader = new GostReader();
-        GameDTO game = gostReader.createGame(gostReader.getGostInfo(filePath2));
+        GameDTO game = gostReader.createGame(gostReader.getFileInfo(gostFile));
+        List<BetDTO> result = gostReader.getResult(gostReader.getFileInfo(resultFile));
+        ResultCounter resultCounter = new ResultCounter();
+        game.setPlayersA(resultCounter.getPoints(game.getPlayersA(),result));
+        game.setPlayersB(resultCounter.getPoints(game.getPlayersB(),result));
         System.out.println(game);
     }
 }
